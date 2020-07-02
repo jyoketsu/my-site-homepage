@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "next dev -p 8081",
     "build": "next build",
-    "start": "next start -p 8081",
-    "deploy": "next build && next start",
+    "start": "next start -p $PORT",
+    "deploy": "next build && PORT=8081 npm start",
     "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest"
   },
   "dependencies": {
