@@ -45,12 +45,41 @@ function Home() {
         </div>
       </div>
       <div className="ICP-licensing">
-        ©2020 Jyoketsu All Rights Reserved{" "}
-        <span
-          onClick={() => window.open("http://www.beian.miit.gov.cn", "_blank")}
-        >
-          苏ICP备20038833号
-        </span>
+        <div>
+          <span>©2020 Jyoketsu All Rights Reserved</span>
+          <span
+            onClick={() =>
+              window.open("http://www.beian.miit.gov.cn", "_blank")
+            }
+          >
+            苏ICP备20038833号
+          </span>
+        </div>
+        <div style={{ width: "300px", margin: "0 auto", padding: "8px 0" }}>
+          <a
+            target="_blank"
+            href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=32041202001749"
+            style={{
+              display: "inline-block",
+              textDecoration: "none",
+              height: "20px",
+              lineHeight: "20px",
+            }}
+          >
+            <img src="/icon/备案图标.png" style={{ float: "left" }} />
+            <p
+              style={{
+                float: "left",
+                height: "20px",
+                lineHeight: "20px",
+                margin: "0px 0px 0px 5px",
+                color: "rgba(0, 0, 0, 0.87)",
+              }}
+            >
+              苏公网安备 32041202001749号
+            </p>
+          </a>
+        </div>
       </div>
       <style jsx>{`
         .home {
@@ -107,6 +136,9 @@ function Home() {
           /* color: #fff; */
           position: absolute;
           bottom: 15px;
+        }
+        .ICP-licensing > div > span {
+          margin: 0 5px;
         }
 
         @media screen and (max-width: 768px) {
