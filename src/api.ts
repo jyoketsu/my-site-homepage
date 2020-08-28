@@ -74,8 +74,15 @@ const request = {
   },
 };
 
+const resume = {
+  get(lang: "zh-Hans" | "zh-Hant" | "ja" | "en") {
+    return request.get(`${API_URL}/resume/lang`, { lang });
+  },
+};
+
 export default {
   request,
+  resume,
   setToken: (_token: string) => {
     window.localStorage.setItem("TOKEN", _token);
     token = _token;
