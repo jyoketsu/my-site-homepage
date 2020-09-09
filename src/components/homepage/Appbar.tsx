@@ -20,6 +20,7 @@ import Brightness4Icon from "@material-ui/icons/Brightness4";
 import Brightness7Icon from "@material-ui/icons/Brightness7";
 import TranslateIcon from "@material-ui/icons/Translate";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { i18n, withTranslation } from "../../../i18n";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -32,7 +33,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function MyAppBar() {
+function MyAppBar({ t }) {
   const classes = useStyles();
   const theme = useTheme();
   const dispatch = useDispatch();
@@ -64,7 +65,7 @@ export default function MyAppBar() {
         <Toolbar>
           <Typography variant="h6">News</Typography>
           <div className={classes.grow} />
-          <Tooltip title={"更改语言"}>
+          <Tooltip title={t("changeLang")}>
             <Button
               className={classes.langButton}
               startIcon={<TranslateIcon style={{ fontSize: "1.5rem" }} />}
@@ -74,9 +75,7 @@ export default function MyAppBar() {
               简体中文
             </Button>
           </Tooltip>
-          <Tooltip
-            title={`切换为${themeType === "dark" ? "亮色" : "深色"}主题`}
-          >
+          <Tooltip title={t("toggleTheme")}>
             <IconButton
               color="inherit"
               onClick={() => dispatch(switchThemeType())}
@@ -93,11 +92,17 @@ export default function MyAppBar() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem>简体中文</MenuItem>
-        <MenuItem>繁體中文</MenuItem>
-        <MenuItem>日本語</MenuItem>
-        <MenuItem>English</MenuItem>
+        <MenuItem onClick={() => i18n.changeLanguage("zhHans")}>
+          简体中文
+        </MenuItem>
+        <MenuItem onClick={() => i18n.changeLanguage("zhHant")}>
+          繁體中文
+        </MenuItem>
+        <MenuItem onClick={() => i18n.changeLanguage("ja")}>日本語</MenuItem>
+        <MenuItem onClick={() => i18n.changeLanguage("en")}>English</MenuItem>
       </Menu>
     </div>
   );
 }
+
+export default withTranslation("common")(MyAppBar);

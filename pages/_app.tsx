@@ -1,14 +1,15 @@
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 import Head from "next/head";
+import App from "next/app";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { createMuiTheme } from "@material-ui/core/styles";
 import { wrapper } from "../src/redux/store";
 import { useTypedSelector } from "../src/redux/reducer/RootState";
+import { appWithTranslation } from "../i18n";
 
-function MyApp(props) {
-  const { Component, pageProps } = props;
+function MyApp({ Component, pageProps }) {
   const themeType = useTypedSelector((state) => state.common.themeType);
 
   useEffect(() => {
@@ -53,4 +54,9 @@ MyApp.propTypes = {
   pageProps: PropTypes.object.isRequired,
 };
 
-export default wrapper.withRedux(MyApp);
+MyApp.getInitialProps = async (appContext) => ({
+  ...(await App.getInitialProps(appContext)),
+});
+
+export default wrapper.withRedux(appWithTranslation(MyApp));
+// export default wrapper.withRedux(MyApp);

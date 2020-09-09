@@ -1,20 +1,23 @@
 import React from "react";
 import MyHead from "../src/components/homepage/MyHead";
 import Licensing from "../src/components/homepage/Licensing";
-import MyAppBar from '../src/components/homepage/Appbar';
+import MyAppBar from "../src/components/homepage/Appbar";
 import api from "../src/api";
 import { Resume } from "../interfaces/resume";
+import { withTranslation } from "../i18n";
 
 interface Props {
   resume: Resume;
+  t: any;
 }
 
-function Home({ resume }: Props) {
+function Home({ resume, t }: Props) {
   console.log("---resume---", resume);
   return (
     <div className="home">
       <MyHead />
-      <MyAppBar/>
+      <MyAppBar />
+      {t("toggleTheme")}
       <Licensing />
     </div>
   );
@@ -30,4 +33,5 @@ export async function getStaticProps() {
   }
 }
 
-export default Home;
+// export default Home;
+export default withTranslation("common")(Home);
