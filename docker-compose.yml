@@ -1,0 +1,17 @@
+services:
+
+  nginx-proxy: # 新增反向代理服务
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    #   - ./certbot/conf:/etc/letsencrypt
+    networks:
+      - xujie-public-net
+
+networks:
+  xujie-public-net:
+    driver: bridge
+    external: true # 确保该网络已创建 docker network create xujie-public-net
